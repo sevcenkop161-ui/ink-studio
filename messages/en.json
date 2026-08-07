@@ -120,6 +120,33 @@
       }
     }
   },
+  "Services": {
+    "eyebrow": "Services",
+    "heading": "What we offer.",
+    "priceFromLabel": "From",
+    "durationLabel": "Typical duration",
+    "free": "Free",
+    "items": {
+      "tattoo": {
+        "name": "Tattoo",
+        "description": "Custom tattoos across styles — blackwork, fine line, realism, color, and neo-traditional. Price and duration depend on size and detail and are confirmed during your consultation.",
+        "durationDisplay": "From ~2 hours",
+        "cta": "Book a tattoo session"
+      },
+      "piercing": {
+        "name": "Piercing",
+        "description": "Professional piercing with sterile, single-use equipment and clear aftercare guidance.",
+        "durationDisplay": "~20 min",
+        "cta": "Book a piercing"
+      },
+      "consultation": {
+        "name": "Consultation",
+        "description": "A free sit-down to talk placement, size, and style before booking a session — no commitment required.",
+        "durationDisplay": "~20 min",
+        "cta": "Book a consultation"
+      }
+    }
+  },
   "Nav": {
     "studio": "Studio",
     "artists": "Artists",

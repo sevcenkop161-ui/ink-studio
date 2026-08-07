@@ -3,6 +3,7 @@ import { Studio } from "@/components/sections/Studio";
 import { Advantages } from "@/components/sections/Advantages";
 import { Artists } from "@/components/sections/Artists";
 import { Works } from "@/components/sections/Works";
+import { Services } from "@/components/sections/Services";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Advantages />
       <Artists />
       <Works />
+      <Services />
     </main>
   );
 }
