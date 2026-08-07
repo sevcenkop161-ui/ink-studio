@@ -2,18 +2,19 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Cormorant } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin", "cyrillic"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const cormorant = Cormorant({
+  variable: "--font-cormorant",
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -39,9 +40,9 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${cormorant.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#050505] text-[#F5F5F5]">
+      <body className="min-h-full flex flex-col bg-bg text-text font-sans">
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
