@@ -40,6 +40,7 @@
     "heading": "Meet the artists.",
     "viewProfile": "View profile",
     "bookWithArtist": "Book with {name}",
+    "worksHeading": "Works by {name}",
     "specializationLabel": "Specialization",
     "experienceLabel": "Experience",
     "yearsSuffix": "years",
@@ -63,6 +64,59 @@
         "specialization": "Neo Traditional",
         "description": "Bold outlines and saturated color with a modern illustrative twist.",
         "bio": "Eva reinterprets traditional tattoo motifs with a modern illustrative style — bold outlines, saturated color, and a bit of storytelling in every piece."
+      }
+    }
+  },
+  "Works": {
+    "eyebrow": "Portfolio",
+    "heading": "Recent works.",
+    "byArtist": "by {name}",
+    "viewProfile": "View artist profile",
+    "close": "Close",
+    "filters": {
+      "all": "All",
+      "blackwork": "Blackwork",
+      "fine-line": "Fine Line",
+      "realism": "Realism",
+      "minimal": "Minimal",
+      "color": "Color"
+    },
+    "items": {
+      "shadow-wolf": {
+        "description": "A heavy blackwork wolf built from solid negative space."
+      },
+      "botanical-line": {
+        "description": "Single-needle botanical study, kept light and airy."
+      },
+      "portrait-study": {
+        "description": "Color realism portrait, built up over three sessions."
+      },
+      "phoenix-rising": {
+        "description": "Saturated neo-traditional phoenix with bold outlines."
+      },
+      "geometric-stag": {
+        "description": "A stag reduced to clean geometric blackwork shapes."
+      },
+      "single-line-wave": {
+        "description": "A minimal wave rendered in a single continuous line."
+      },
+      "koi-in-color": {
+        "description": "Layered color work capturing movement in the water."
+      },
+      "traditional-rose": {
+        "description": "A rose in saturated traditional color and bold linework."
+      },
+      "linework-portrait": {
+        "description": "A portrait built entirely from fine, deliberate lines."
+      },
+      "realistic-lion": {
+        "description": "Black-and-grey realism with careful shading and depth."
+      },
+      "minimal-mountain": {
+        "description": "A quiet mountain range reduced to its simplest form."
+      },
+      "blackwork-mandala": {
+        "description": "A large-scale mandala built from precise blackwork patterns."
       }
     }
   },

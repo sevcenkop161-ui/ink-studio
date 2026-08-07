@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { navItems } from "@/components/layout/nav-items";
+import { useEscapeKey } from "@/hooks/useEscapeKey";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 type Props = {
   open: boolean;
@@ -14,20 +15,8 @@ type Props = {
 export function MobileMenu({ open, onClose }: Props) {
   const t = useTranslations("Nav");
 
-  useEffect(() => {
-    if (!open) return;
-
-    document.body.style.overflow = "hidden";
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") onClose();
-    }
-    window.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKeyDown);
-    };
-  }, [open, onClose]);
+  useScrollLock(open);
+  useEscapeKey(onClose, open);
 
   return (
     <div

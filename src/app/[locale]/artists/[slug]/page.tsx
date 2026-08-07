@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { PlaceholderVisual } from "@/components/ui/PlaceholderVisual";
 import { artists, getArtistBySlug } from "@/data/artists";
+import { getWorksByArtist } from "@/data/works";
 import { routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
@@ -45,6 +46,8 @@ export default async function ArtistPage({
 
   const index = artists.findIndex((a) => a.slug === slug);
   const t = await getTranslations("Artists");
+  const tWorks = await getTranslations("Works");
+  const artistWorks = getWorksByArtist(slug);
 
   return (
     <main className="flex-1 pt-32 pb-24">
@@ -86,6 +89,30 @@ export default async function ArtistPage({
             </Button>
           </div>
         </div>
+
+        {artistWorks.length > 0 && (
+          <div className="mt-20 border-t border-border pt-16">
+            <h2 className="font-display text-3xl">
+              {t("worksHeading", { name: artist.name })}
+            </h2>
+            <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3">
+              {artistWorks.map((work, workIndex) => (
+                <div key={work.slug}>
+                  <PlaceholderVisual
+                    index={workIndex}
+                    className="aspect-square"
+                  />
+                  <div className="mt-3">
+                    <p className="text-sm font-medium">{work.title}</p>
+                    <p className="text-sm text-text-secondary">
+                      {tWorks(`filters.${work.category}`)}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </Container>
     </main>
   );
