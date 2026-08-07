@@ -68,6 +68,51 @@
     "free": "Free",
     "ctaTemplate": "Book {name}"
   },
+  "Reviews": {
+    "eyebrow": "Reviews",
+    "heading": "What clients say.",
+    "viewArtist": "View artist"
+  },
+  "FAQ": {
+    "eyebrow": "FAQ",
+    "heading": "Good to know.",
+    "items": {
+      "prepare": {
+        "question": "How do I prepare for a session?",
+        "answer": "Get a good night's sleep, eat beforehand, and stay hydrated. Avoid alcohol for 24 hours before your appointment and wear comfortable clothing that gives easy access to the area."
+      },
+      "duration": {
+        "question": "How long does a session take?",
+        "answer": "It depends entirely on size and detail — a small piece can take under an hour, while larger work is usually split across multiple sessions. We'll give you a realistic estimate during your consultation."
+      },
+      "consultation": {
+        "question": "Can I come in for a consultation first?",
+        "answer": "Yes — consultations are free and there's no obligation to book afterward. It's the easiest way to talk through placement, size, and style before committing."
+      },
+      "chooseArtist": {
+        "question": "How do I choose an artist?",
+        "answer": "Browse the Artists and Works sections to see who works in the style you're drawn to. If you're unsure, mention it in your booking comment and we'll help point you in the right direction."
+      },
+      "howBooking": {
+        "question": "How does booking work?",
+        "answer": "Pick a service and artist, choose an available date and time, and leave your contact details. You'll see a confirmation on screen right away, and we'll follow up to confirm the details."
+      },
+      "cancel": {
+        "question": "How do I cancel a booking?",
+        "answer": "Message us on Telegram or by phone with your name and appointment time, and we'll cancel it for you. Please give us as much notice as you can."
+      }
+    }
+  },
+  "Contacts": {
+    "eyebrow": "Contacts",
+    "heading": "Come say hi.",
+    "addressLabel": "Address",
+    "address": "Torstraße 42, 10119 Berlin",
+    "hoursLabel": "Hours",
+    "hours": "Tue–Sun, 11:00–20:00",
+    "socialsLabel": "Follow",
+    "cta": "Book now"
+  },
   "Booking": {
     "back": "Back",
     "next": "Next",

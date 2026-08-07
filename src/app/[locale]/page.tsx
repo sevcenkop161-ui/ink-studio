@@ -4,6 +4,9 @@ import { Advantages } from "@/components/sections/Advantages";
 import { Artists } from "@/components/sections/Artists";
 import { Works } from "@/components/sections/Works";
 import { Services } from "@/components/sections/Services";
+import { Reviews } from "@/components/sections/Reviews";
+import { FAQ } from "@/components/sections/FAQ";
+import { Contacts } from "@/components/sections/Contacts";
 
 export default function Home() {
   return (
@@ -14,6 +17,9 @@ export default function Home() {
       <Artists />
       <Works />
       <Services />
+      <Reviews />
+      <FAQ />
+      <Contacts />
     </main>
   );
 }
