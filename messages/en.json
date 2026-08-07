@@ -147,6 +147,46 @@
       }
     }
   },
+  "Booking": {
+    "back": "Back",
+    "next": "Next",
+    "confirm": "Confirm booking",
+    "submitting": "Submitting…",
+    "steps": {
+      "service": { "label": "Service", "title": "Choose a service" },
+      "artist": { "label": "Artist", "title": "Choose an artist" },
+      "date": { "label": "Date", "title": "Choose a date" },
+      "time": { "label": "Time", "title": "Choose a time" },
+      "contact": { "label": "Contact", "title": "Your details" },
+      "confirm": { "label": "Confirm", "title": "Confirm your booking" }
+    },
+    "fields": {
+      "name": "Name",
+      "phone": "Phone",
+      "telegram": "Telegram",
+      "comment": "Comment (optional)"
+    },
+    "errors": {
+      "name": "Please enter your name (at least 2 characters).",
+      "contactRequired": "Add a phone number or Telegram username so we can reach you.",
+      "submit": "Something went wrong sending your booking. Please try again."
+    },
+    "summary": {
+      "service": "Service",
+      "artist": "Artist",
+      "date": "Date",
+      "time": "Time",
+      "name": "Name",
+      "phone": "Phone",
+      "telegram": "Telegram",
+      "comment": "Comment"
+    },
+    "success": {
+      "title": "Booking confirmed",
+      "body": "Your request has been sent successfully. We'll reach out to confirm the details.",
+      "backHome": "Back to homepage"
+    }
+  },
   "Nav": {
     "studio": "Studio",
     "artists": "Artists",
