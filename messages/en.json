@@ -1,6 +1,10 @@
 {
-  "HomePage": {
-    "title": "Ink Studio"
+  "Hero": {
+    "eyebrow": "Tattoo studio / Berlin",
+    "title": "Your story, inked forever.",
+    "subtitle": "A Berlin studio for tattoos made with intention — bold blackwork, fine detail, and everything in between.",
+    "ctaPrimary": "Book now",
+    "ctaSecondary": "View works"
   },
   "Nav": {
     "studio": "Studio",
