@@ -33,12 +33,15 @@ export type WorkCategory =
   | "minimal"
   | "color";
 
+export type WorkSize = "square" | "tall" | "wide";
+
 export type WorkRow = {
   id: string;
   title: string;
   image_url: string | null;
   artist_id: string;
   category: WorkCategory;
+  size: WorkSize;
   description_en: string | null;
   description_ru: string | null;
   created_at: string;
@@ -79,24 +82,44 @@ export type Database = {
         Row: ArtistRow;
         Insert: Partial<ArtistRow> & Pick<ArtistRow, "name" | "slug">;
         Update: Partial<ArtistRow>;
+        Relationships: [];
       };
       services: {
         Row: ServiceRow;
         Insert: Partial<ServiceRow> &
           Pick<ServiceRow, "slug" | "name_en" | "name_ru">;
         Update: Partial<ServiceRow>;
+        Relationships: [];
       };
       works: {
         Row: WorkRow;
         Insert: Partial<WorkRow> &
           Pick<WorkRow, "title" | "artist_id" | "category">;
         Update: Partial<WorkRow>;
+        Relationships: [
+          {
+            foreignKeyName: "works_artist_id_fkey";
+            columns: ["artist_id"];
+            isOneToOne: false;
+            referencedRelation: "artists";
+            referencedColumns: ["id"];
+          },
+        ];
       };
       reviews: {
         Row: ReviewRow;
         Insert: Partial<ReviewRow> &
           Pick<ReviewRow, "name" | "text_en" | "text_ru" | "rating">;
         Update: Partial<ReviewRow>;
+        Relationships: [
+          {
+            foreignKeyName: "reviews_artist_id_fkey";
+            columns: ["artist_id"];
+            isOneToOne: false;
+            referencedRelation: "artists";
+            referencedColumns: ["id"];
+          },
+        ];
       };
       bookings: {
         Row: BookingRow;
@@ -106,7 +129,32 @@ export type Database = {
             "client_name" | "artist_id" | "service_id" | "booking_date" | "booking_time"
           >;
         Update: Partial<BookingRow>;
+        Relationships: [
+          {
+            foreignKeyName: "bookings_artist_id_fkey";
+            columns: ["artist_id"];
+            isOneToOne: false;
+            referencedRelation: "artists";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "bookings_service_id_fkey";
+            columns: ["service_id"];
+            isOneToOne: false;
+            referencedRelation: "services";
+            referencedColumns: ["id"];
+          },
+        ];
       };
     };
+    Views: Record<string, never>;
+    Functions: {
+      get_booked_times: {
+        Args: { p_artist_id: string; p_date: string };
+        Returns: { booking_time: string }[];
+      };
+    };
+    Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
   };
 };

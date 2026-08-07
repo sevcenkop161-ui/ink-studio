@@ -2,15 +2,15 @@
 
 import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/Card";
-import { artists } from "@/data/artists";
+import type { ArtistWithLocale } from "@/lib/data/artists";
 
 type Props = {
+  artists: ArtistWithLocale[];
   selected: string | null;
   onSelect: (slug: string) => void;
 };
 
-export function ArtistStep({ selected, onSelect }: Props) {
-  const t = useTranslations("Artists");
+export function ArtistStep({ artists, selected, onSelect }: Props) {
   const tBooking = useTranslations("Booking");
 
   return (
@@ -34,7 +34,7 @@ export function ArtistStep({ selected, onSelect }: Props) {
               >
                 <h3 className="font-medium">{artist.name}</h3>
                 <p className="mt-2 text-sm text-text-secondary">
-                  {t(`items.${artist.slug}.specialization`)}
+                  {artist.specialization}
                 </p>
               </Card>
             </button>

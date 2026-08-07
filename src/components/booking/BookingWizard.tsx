@@ -13,11 +13,14 @@ import { ContactStep } from "@/components/booking/steps/ContactStep";
 import { ConfirmationStep } from "@/components/booking/steps/ConfirmationStep";
 import { SuccessScreen } from "@/components/booking/SuccessScreen";
 import { submitBooking } from "@/lib/booking-actions";
+import type { ArtistWithLocale } from "@/lib/data/artists";
+import type { ServiceWithLocale } from "@/lib/data/services";
 import type { ContactFormData } from "@/lib/validations/booking";
 
 const STEPS = ["service", "artist", "date", "time", "contact", "confirm"] as const;
 type Step = (typeof STEPS)[number];
 type Status = "idle" | "submitting" | "error" | "success";
+type ErrorReason = "conflict" | "generic" | null;
 
 export type BookingData = {
   serviceSlug: string | null;
@@ -27,7 +30,12 @@ export type BookingData = {
   contact: ContactFormData | null;
 };
 
-export function BookingWizard() {
+type Props = {
+  artists: ArtistWithLocale[];
+  services: ServiceWithLocale[];
+};
+
+export function BookingWizard({ artists, services }: Props) {
   const searchParams = useSearchParams();
   const t = useTranslations("Booking");
 
@@ -40,6 +48,7 @@ export function BookingWizard() {
     contact: null,
   }));
   const [status, setStatus] = useState<Status>("idle");
+  const [errorReason, setErrorReason] = useState<ErrorReason>(null);
 
   const step: Step = STEPS[stepIndex];
 
@@ -63,6 +72,8 @@ export function BookingWizard() {
     }
 
     setStatus("submitting");
+    setErrorReason(null);
+
     const result = await submitBooking({
       serviceSlug: data.serviceSlug,
       artistSlug: data.artistSlug,
@@ -70,7 +81,13 @@ export function BookingWizard() {
       time: data.time,
       contact: data.contact,
     });
-    setStatus(result.success ? "success" : "error");
+
+    if (result.success) {
+      setStatus("success");
+    } else {
+      setStatus("error");
+      setErrorReason(result.error === "conflict" ? "conflict" : "generic");
+    }
   }
 
   if (status === "success") {
@@ -87,12 +104,14 @@ export function BookingWizard() {
 
       {step === "service" && (
         <ServiceStep
+          services={services}
           selected={data.serviceSlug}
           onSelect={(serviceSlug) => setData((d) => ({ ...d, serviceSlug }))}
         />
       )}
       {step === "artist" && (
         <ArtistStep
+          artists={artists}
           selected={data.artistSlug}
           onSelect={(artistSlug) => setData((d) => ({ ...d, artistSlug }))}
         />
@@ -100,11 +119,14 @@ export function BookingWizard() {
       {step === "date" && (
         <DateStep
           selected={data.date}
-          onSelect={(date) => setData((d) => ({ ...d, date }))}
+          onSelect={(date) => setData((d) => ({ ...d, date, time: null }))}
         />
       )}
       {step === "time" && (
         <TimeStep
+          artistSlug={data.artistSlug}
+          date={data.date}
+          artists={artists}
           selected={data.time}
           onSelect={(time) => setData((d) => ({ ...d, time }))}
         />
@@ -121,34 +143,44 @@ export function BookingWizard() {
       {step === "confirm" && (
         <ConfirmationStep
           data={data}
-          status={status === "error" ? "error" : status === "submitting" ? "submitting" : "idle"}
-          onConfirm={handleConfirm}
+          artists={artists}
+          services={services}
+          errorReason={errorReason}
         />
       )}
 
-      {step !== "confirm" && (
-        <div className="flex justify-between border-t border-border pt-6">
+      <div className="flex justify-between border-t border-border pt-6">
+        <Button
+          type="button"
+          variant="ghost"
+          onClick={goBack}
+          disabled={stepIndex === 0}
+          className={stepIndex === 0 ? "invisible" : ""}
+        >
+          {t("back")}
+        </Button>
+
+        {step === "contact" && (
+          <Button type="submit" form="contact-step-form" size="lg">
+            {t("next")}
+          </Button>
+        )}
+        {step !== "contact" && step !== "confirm" && (
+          <Button type="button" onClick={goNext} disabled={!canGoNext} size="lg">
+            {t("next")}
+          </Button>
+        )}
+        {step === "confirm" && (
           <Button
             type="button"
-            variant="ghost"
-            onClick={goBack}
-            disabled={stepIndex === 0}
-            className={stepIndex === 0 ? "invisible" : ""}
+            onClick={handleConfirm}
+            disabled={status === "submitting"}
+            size="lg"
           >
-            {t("back")}
+            {status === "submitting" ? t("submitting") : t("confirm")}
           </Button>
-
-          {step === "contact" ? (
-            <Button type="submit" form="contact-step-form" size="lg">
-              {t("next")}
-            </Button>
-          ) : (
-            <Button type="button" onClick={goNext} disabled={!canGoNext} size="lg">
-              {t("next")}
-            </Button>
-          )}
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

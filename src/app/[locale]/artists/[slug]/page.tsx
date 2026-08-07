@@ -4,11 +4,12 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { PlaceholderVisual } from "@/components/ui/PlaceholderVisual";
-import { artists, getArtistBySlug } from "@/data/artists";
-import { getWorksByArtist } from "@/data/works";
+import { getArtistBySlug, getArtists } from "@/lib/data/artists";
+import { getWorksByArtistSlug } from "@/lib/data/works";
 import { routing } from "@/i18n/routing";
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const artists = await getArtists("en");
   return routing.locales.flatMap((locale) =>
     artists.map((artist) => ({ locale, slug: artist.slug })),
   );
@@ -22,14 +23,12 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const artist = getArtistBySlug(slug);
+  const artist = await getArtistBySlug(slug, locale);
   if (!artist) return {};
-
-  const t = await getTranslations({ locale, namespace: "Artists" });
 
   return {
     title: `${artist.name} — Ink Studio`,
-    description: t(`items.${slug}.description`),
+    description: artist.bio,
   };
 }
 
@@ -41,13 +40,15 @@ export default async function ArtistPage({
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const artist = getArtistBySlug(slug);
+  const artist = await getArtistBySlug(slug, locale);
   if (!artist) notFound();
 
-  const index = artists.findIndex((a) => a.slug === slug);
   const t = await getTranslations("Artists");
   const tWorks = await getTranslations("Works");
-  const artistWorks = getWorksByArtist(slug);
+  const artistWorks = await getWorksByArtistSlug(slug, locale);
+
+  const artists = await getArtists(locale);
+  const index = artists.findIndex((a) => a.slug === slug);
 
   return (
     <main className="flex-1 pt-32 pb-24">
@@ -58,7 +59,7 @@ export default async function ArtistPage({
           <div className="space-y-8">
             <div className="space-y-2">
               <p className="text-sm tracking-[0.2em] text-text-secondary uppercase">
-                {t(`items.${slug}.specialization`)}
+                {artist.specialization}
               </p>
               <h1 className="font-display text-5xl">{artist.name}</h1>
             </div>
@@ -76,13 +77,11 @@ export default async function ArtistPage({
                 <p className="text-text-secondary">
                   {t("specializationLabel")}
                 </p>
-                <p className="mt-1">{t(`items.${slug}.specialization`)}</p>
+                <p className="mt-1">{artist.specialization}</p>
               </div>
             </div>
 
-            <p className="max-w-md text-text-secondary">
-              {t(`items.${slug}.bio`)}
-            </p>
+            <p className="max-w-md text-text-secondary">{artist.bio}</p>
 
             <Button href={`/booking?artist=${slug}`} size="lg">
               {t("bookWithArtist", { name: artist.name })}
@@ -97,7 +96,7 @@ export default async function ArtistPage({
             </h2>
             <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3">
               {artistWorks.map((work, workIndex) => (
-                <div key={work.slug}>
+                <div key={work.id}>
                   <PlaceholderVisual
                     index={workIndex}
                     className="aspect-square"

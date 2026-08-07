@@ -43,29 +43,7 @@
     "worksHeading": "Works by {name}",
     "specializationLabel": "Specialization",
     "experienceLabel": "Experience",
-    "yearsSuffix": "years",
-    "items": {
-      "alex": {
-        "specialization": "Blackwork / Graphic",
-        "description": "Bold linework and graphic composition — tattoos that read like poster art.",
-        "bio": "Alex works in heavy blackwork and graphic shapes, building tattoos the way a poster designer builds a layout — strong silhouettes first, detail second. Best known for large-scale pieces that hold up from across the room."
-      },
-      "mia": {
-        "specialization": "Fine Line / Minimal",
-        "description": "Delicate linework for pieces that whisper rather than shout.",
-        "bio": "Mia's fine-line and minimal work is about restraint — thin, confident lines and a lot of empty space. A favourite for first tattoos and quiet, personal pieces."
-      },
-      "noah": {
-        "specialization": "Realism / Color",
-        "description": "Photographic detail and rich color, built up session by session.",
-        "bio": "Noah specializes in color realism — portraits, animals, nature — built up in careful layers over multiple sessions. Technical precision with a painter's eye for color."
-      },
-      "eva": {
-        "specialization": "Neo Traditional",
-        "description": "Bold outlines and saturated color with a modern illustrative twist.",
-        "bio": "Eva reinterprets traditional tattoo motifs with a modern illustrative style — bold outlines, saturated color, and a bit of storytelling in every piece."
-      }
-    }
+    "yearsSuffix": "years"
   },
   "Works": {
     "eyebrow": "Portfolio",
@@ -80,44 +58,6 @@
       "realism": "Realism",
       "minimal": "Minimal",
       "color": "Color"
-    },
-    "items": {
-      "shadow-wolf": {
-        "description": "A heavy blackwork wolf built from solid negative space."
-      },
-      "botanical-line": {
-        "description": "Single-needle botanical study, kept light and airy."
-      },
-      "portrait-study": {
-        "description": "Color realism portrait, built up over three sessions."
-      },
-      "phoenix-rising": {
-        "description": "Saturated neo-traditional phoenix with bold outlines."
-      },
-      "geometric-stag": {
-        "description": "A stag reduced to clean geometric blackwork shapes."
-      },
-      "single-line-wave": {
-        "description": "A minimal wave rendered in a single continuous line."
-      },
-      "koi-in-color": {
-        "description": "Layered color work capturing movement in the water."
-      },
-      "traditional-rose": {
-        "description": "A rose in saturated traditional color and bold linework."
-      },
-      "linework-portrait": {
-        "description": "A portrait built entirely from fine, deliberate lines."
-      },
-      "realistic-lion": {
-        "description": "Black-and-grey realism with careful shading and depth."
-      },
-      "minimal-mountain": {
-        "description": "A quiet mountain range reduced to its simplest form."
-      },
-      "blackwork-mandala": {
-        "description": "A large-scale mandala built from precise blackwork patterns."
-      }
     }
   },
   "Services": {
@@ -126,32 +66,14 @@
     "priceFromLabel": "From",
     "durationLabel": "Typical duration",
     "free": "Free",
-    "items": {
-      "tattoo": {
-        "name": "Tattoo",
-        "description": "Custom tattoos across styles — blackwork, fine line, realism, color, and neo-traditional. Price and duration depend on size and detail and are confirmed during your consultation.",
-        "durationDisplay": "From ~2 hours",
-        "cta": "Book a tattoo session"
-      },
-      "piercing": {
-        "name": "Piercing",
-        "description": "Professional piercing with sterile, single-use equipment and clear aftercare guidance.",
-        "durationDisplay": "~20 min",
-        "cta": "Book a piercing"
-      },
-      "consultation": {
-        "name": "Consultation",
-        "description": "A free sit-down to talk placement, size, and style before booking a session — no commitment required.",
-        "durationDisplay": "~20 min",
-        "cta": "Book a consultation"
-      }
-    }
+    "ctaTemplate": "Book {name}"
   },
   "Booking": {
     "back": "Back",
     "next": "Next",
     "confirm": "Confirm booking",
     "submitting": "Submitting…",
+    "loadingTimes": "Checking availability…",
     "steps": {
       "service": { "label": "Service", "title": "Choose a service" },
       "artist": { "label": "Artist", "title": "Choose an artist" },
@@ -169,7 +91,9 @@
     "errors": {
       "name": "Please enter your name (at least 2 characters).",
       "contactRequired": "Add a phone number or Telegram username so we can reach you.",
-      "submit": "Something went wrong sending your booking. Please try again."
+      "submit": "Something went wrong sending your booking. Please try again.",
+      "conflict": "This time slot was just booked by someone else. Please go back and choose another time.",
+      "loadTimes": "Couldn't check availability. Please try again."
     },
     "summary": {
       "service": "Service",

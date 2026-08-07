@@ -2,14 +2,15 @@
 
 import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/Card";
-import { services } from "@/data/services";
+import type { ServiceWithLocale } from "@/lib/data/services";
 
 type Props = {
+  services: ServiceWithLocale[];
   selected: string | null;
   onSelect: (slug: string) => void;
 };
 
-export function ServiceStep({ selected, onSelect }: Props) {
+export function ServiceStep({ services, selected, onSelect }: Props) {
   const t = useTranslations("Services");
   const tBooking = useTranslations("Booking");
 
@@ -32,9 +33,7 @@ export function ServiceStep({ selected, onSelect }: Props) {
                   isSelected ? "border-accent" : "hover:border-border-hover"
                 }
               >
-                <h3 className="font-medium">
-                  {t(`items.${service.slug}.name`)}
-                </h3>
+                <h3 className="font-medium">{service.name}</h3>
                 <p className="mt-2 text-sm text-text-secondary">
                   {service.priceFrom === 0
                     ? t("free")
