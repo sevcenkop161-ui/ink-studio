@@ -1,25 +1,10 @@
 "use client";
 
-import { motion, type Variants } from "motion/react";
+import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-
-const container: Variants = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
-  },
-};
-
-const item: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-  },
-};
+import { fadeUp, staggerContainer } from "@/lib/motion";
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -46,30 +31,30 @@ export function Hero() {
 
       <Container className="relative z-10">
         <motion.div
-          variants={container}
+          variants={staggerContainer}
           initial="hidden"
           animate="show"
           className="max-w-2xl space-y-6 pt-24"
         >
           <motion.p
-            variants={item}
+            variants={fadeUp}
             className="text-sm tracking-[0.2em] text-text-secondary uppercase"
           >
             {t("eyebrow")}
           </motion.p>
           <motion.h1
-            variants={item}
+            variants={fadeUp}
             className="font-display text-6xl leading-[1.05] sm:text-7xl lg:text-8xl"
           >
             {t("title")}
           </motion.h1>
           <motion.p
-            variants={item}
+            variants={fadeUp}
             className="max-w-md text-lg text-text-secondary"
           >
             {t("subtitle")}
           </motion.p>
-          <motion.div variants={item} className="flex flex-wrap gap-4 pt-2">
+          <motion.div variants={fadeUp} className="flex flex-wrap gap-4 pt-2">
             <Button href="/booking" size="lg">
               {t("ctaPrimary")}
             </Button>
