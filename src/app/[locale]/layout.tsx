@@ -7,6 +7,7 @@ import { MotionConfig } from "motion/react";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { PageTransition } from "@/components/PageTransition";
 import "../globals.css";
 
 const inter = Inter({
@@ -50,7 +51,7 @@ export default async function LocaleLayout({
           <MotionConfig reducedMotion="user">
             <Header />
             <div id="main-content" className="flex flex-1 flex-col">
-              {children}
+              <PageTransition>{children}</PageTransition>
             </div>
             <Footer />
           </MotionConfig>

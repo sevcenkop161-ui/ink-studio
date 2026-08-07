@@ -33,7 +33,10 @@ export function ArtistsGrid({ artists }: { artists: ArtistWithLocale[] }) {
         {artists.map((artist, index) => (
           <motion.div key={artist.slug} variants={fadeUp}>
             <Link href={`/artists/${artist.slug}`} className="group block">
-              <PlaceholderVisual index={index} className="aspect-[3/4]" />
+              <PlaceholderVisual
+                index={index}
+                className="aspect-[3/4] transition-transform duration-300 group-hover:scale-[1.02]"
+              />
               <div className="mt-4 space-y-1">
                 <h3 className="font-medium">{artist.name}</h3>
                 <p className="text-sm text-text-secondary">
