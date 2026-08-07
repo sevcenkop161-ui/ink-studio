@@ -35,6 +35,37 @@
       "description": "Attention to every client's wishes."
     }
   },
+  "Artists": {
+    "eyebrow": "Our artists",
+    "heading": "Meet the artists.",
+    "viewProfile": "View profile",
+    "bookWithArtist": "Book with {name}",
+    "specializationLabel": "Specialization",
+    "experienceLabel": "Experience",
+    "yearsSuffix": "years",
+    "items": {
+      "alex": {
+        "specialization": "Blackwork / Graphic",
+        "description": "Bold linework and graphic composition — tattoos that read like poster art.",
+        "bio": "Alex works in heavy blackwork and graphic shapes, building tattoos the way a poster designer builds a layout — strong silhouettes first, detail second. Best known for large-scale pieces that hold up from across the room."
+      },
+      "mia": {
+        "specialization": "Fine Line / Minimal",
+        "description": "Delicate linework for pieces that whisper rather than shout.",
+        "bio": "Mia's fine-line and minimal work is about restraint — thin, confident lines and a lot of empty space. A favourite for first tattoos and quiet, personal pieces."
+      },
+      "noah": {
+        "specialization": "Realism / Color",
+        "description": "Photographic detail and rich color, built up session by session.",
+        "bio": "Noah specializes in color realism — portraits, animals, nature — built up in careful layers over multiple sessions. Technical precision with a painter's eye for color."
+      },
+      "eva": {
+        "specialization": "Neo Traditional",
+        "description": "Bold outlines and saturated color with a modern illustrative twist.",
+        "bio": "Eva reinterprets traditional tattoo motifs with a modern illustrative style — bold outlines, saturated color, and a bit of storytelling in every piece."
+      }
+    }
+  },
   "Nav": {
     "studio": "Studio",
     "artists": "Artists",

@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
+import { PlaceholderVisual } from "@/components/ui/PlaceholderVisual";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 
 const statKeys = ["experience", "artists", "works"] as const;
@@ -59,13 +60,8 @@ export function Studio() {
             </motion.p>
           </div>
 
-          <motion.div
-            variants={fadeUp}
-            aria-hidden="true"
-            className="relative aspect-[4/5] overflow-hidden rounded-lg border border-border"
-          >
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(139,92,246,0.14),transparent_65%)]" />
-            <div className="absolute inset-0 bg-gradient-to-br from-card via-bg to-card" />
+          <motion.div variants={fadeUp}>
+            <PlaceholderVisual index={1} className="aspect-[4/5]" />
           </motion.div>
         </motion.div>
       </Container>
