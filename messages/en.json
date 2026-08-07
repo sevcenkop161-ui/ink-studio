@@ -1,5 +1,25 @@
 {
   "HomePage": {
     "title": "Ink Studio"
+  },
+  "Nav": {
+    "studio": "Studio",
+    "artists": "Artists",
+    "works": "Works",
+    "services": "Services",
+    "faq": "FAQ",
+    "contacts": "Contacts",
+    "cta": "Book now",
+    "menu": "Menu",
+    "close": "Close menu"
+  },
+  "Footer": {
+    "eyebrow": "Tattoo studio / Berlin",
+    "privacy": "Privacy Policy",
+    "rights": "Ink Studio. Demo/concept project."
+  },
+  "PrivacyPage": {
+    "title": "Privacy Policy",
+    "body": "Ink Studio is a demo/concept project built for a developer portfolio. It is not a real business, and this page does not describe the practices of an actual company. In a production deployment, this page would explain what data is collected through the booking form, how it is stored (via Supabase), and how visitors can request its removal."
   }
 }

@@ -4,6 +4,8 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Inter, Cormorant } from "next/font/google";
 import { routing } from "@/i18n/routing";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 import "../globals.css";
 
 const inter = Inter({
@@ -44,7 +46,11 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col bg-bg text-text font-sans">
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <Header />
+          <div id="main-content" className="flex flex-1 flex-col">
+            {children}
+          </div>
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>
