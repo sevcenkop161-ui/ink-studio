@@ -21,8 +21,9 @@ export function MobileMenu({ open, onClose }: Props) {
   return (
     <div
       role="dialog"
-      aria-modal="true"
+      aria-modal={open || undefined}
       aria-label={t("menu")}
+      inert={!open}
       className={`fixed inset-0 z-[70] flex flex-col bg-bg transition-opacity duration-300 lg:hidden ${
         open
           ? "pointer-events-auto opacity-100"
