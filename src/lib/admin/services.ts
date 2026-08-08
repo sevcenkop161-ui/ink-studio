@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin-client";
 import { serviceSchema } from "@/lib/validations/admin";
+import { revalidatePublicPages } from "@/lib/admin/revalidate-public";
 import type { ServiceRow } from "@/types/database";
 
 export async function getServicesAdmin(): Promise<ServiceRow[]> {
@@ -51,6 +52,7 @@ export async function createService(
   }
 
   revalidatePath("/admin/services");
+  revalidatePublicPages();
   return { success: true };
 }
 
@@ -77,5 +79,6 @@ export async function updateService(
   }
 
   revalidatePath("/admin/services");
+  revalidatePublicPages();
   return { success: true };
 }

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { createBrowserClient } from "@/lib/supabase/client";
+import { getBookedTimes } from "@/lib/booking-actions";
 import type { ArtistWithLocale } from "@/lib/data/artists";
 import { TIME_SLOTS } from "@/lib/booking-datetime";
 
@@ -32,21 +32,14 @@ export function TimeStep({ artistSlug, date, artists, selected, onSelect }: Prop
     const key = `${currentArtist.id}:${date}`;
     let cancelled = false;
 
-    const supabase = createBrowserClient();
-    supabase
-      .rpc("get_booked_times", { p_artist_id: currentArtist.id, p_date: date })
-      .then(({ data, error }) => {
-        if (cancelled) return;
-        if (error) {
-          setResult({ key, status: "error" });
-        } else {
-          setResult({
-            key,
-            status: "loaded",
-            times: (data ?? []).map((row) => row.booking_time.slice(0, 5)),
-          });
-        }
-      });
+    getBookedTimes(currentArtist.id, date).then((result) => {
+      if (cancelled) return;
+      if (!result.success) {
+        setResult({ key, status: "error" });
+      } else {
+        setResult({ key, status: "loaded", times: result.times });
+      }
+    });
 
     return () => {
       cancelled = true;
@@ -85,7 +78,7 @@ export function TimeStep({ artistSlug, date, artists, selected, onSelect }: Prop
                   isTaken
                     ? "cursor-not-allowed border-border text-text-secondary/40 line-through"
                     : isSelected
-                      ? "border-accent bg-accent text-white"
+                      ? "border-accent-solid bg-accent-solid text-white"
                       : "border-border text-text-secondary hover:border-border-hover hover:text-text"
                 }`}
               >

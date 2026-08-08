@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin-client";
 import { artistSchema } from "@/lib/validations/admin";
+import { revalidatePublicPages } from "@/lib/admin/revalidate-public";
 import type { ArtistRow } from "@/types/database";
 
 export async function getArtistsAdmin(): Promise<ArtistRow[]> {
@@ -50,6 +51,7 @@ export async function createArtist(
   }
 
   revalidatePath("/admin/artists");
+  revalidatePublicPages(parsed.data.slug);
   return { success: true };
 }
 
@@ -76,5 +78,6 @@ export async function updateArtist(
   }
 
   revalidatePath("/admin/artists");
+  revalidatePublicPages(parsed.data.slug);
   return { success: true };
 }

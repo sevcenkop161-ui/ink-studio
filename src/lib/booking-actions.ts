@@ -4,6 +4,31 @@ import { createServerClient } from "@/lib/supabase/server";
 import { notifyTelegramNewBooking } from "@/lib/telegram";
 import { bookingSchema, type BookingFormData } from "@/lib/validations/booking";
 
+export type GetBookedTimesResult =
+  | { success: true; times: string[] }
+  | { success: false };
+
+export async function getBookedTimes(
+  artistId: string,
+  date: string,
+): Promise<GetBookedTimesResult> {
+  const supabase = createServerClient();
+  const { data, error } = await supabase.rpc("get_booked_times", {
+    p_artist_id: artistId,
+    p_date: date,
+  });
+
+  if (error) {
+    console.error("[booking] get_booked_times failed:", error);
+    return { success: false };
+  }
+
+  return {
+    success: true,
+    times: (data ?? []).map((row) => row.booking_time.slice(0, 5)),
+  };
+}
+
 export type SubmitBookingResult =
   | { success: true }
   | { success: false; error: "conflict" | "invalid" | "unknown" };
