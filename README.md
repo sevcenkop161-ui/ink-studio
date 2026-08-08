@@ -10,6 +10,16 @@ availability, an authenticated admin dashboard, and a production deployment.
 > not a real business. See [`PROJECT_SPEC.md`](./PROJECT_SPEC.md) for the
 > original brief this was built against.
 
+## Screenshots
+
+|  |  |
+|---|---|
+| ![Homepage](./docs/screenshots/01-hero-en.png) | ![Homepage — Russian](./docs/screenshots/02-hero-ru.png) |
+| ![Portfolio gallery](./docs/screenshots/04-works-gallery.png) | ![Booking wizard — live time slots](./docs/screenshots/07-booking-wizard.png) |
+| ![Mobile view](./docs/screenshots/08-mobile-home.png) | ![Admin sign-in](./docs/screenshots/10-admin-login.png) |
+
+More in [`docs/screenshots/`](./docs/screenshots/).
+
 ## Features
 
 - **Bilingual site** (English/Russian) with locale-aware routing, SEO
