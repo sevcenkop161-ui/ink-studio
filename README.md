@@ -4,21 +4,15 @@ A premium tattoo studio website — a demo/concept project built as a portfolio
 piece. Bilingual (EN/RU), fully functional booking flow with real-time
 availability, an authenticated admin dashboard, and a production deployment.
 
-**Live demo:** https://ink-studio-swart.vercel.app
+> **Demo/concept project.** This is a fictional studio built to demonstrate
+> full-stack development — not a real business and not client work. See
+> [`PROJECT_SPEC.md`](./PROJECT_SPEC.md) for the original brief.
 
-> This is a fictional studio built to demonstrate full-stack development —
-> not a real business. See [`PROJECT_SPEC.md`](./PROJECT_SPEC.md) for the
-> original brief this was built against.
+## Preview
 
-## Screenshots
+**Live site:** https://ink-studio-swart.vercel.app
 
-|  |  |
-|---|---|
-| ![Homepage](./docs/screenshots/01-hero-en.png) | ![Homepage — Russian](./docs/screenshots/02-hero-ru.png) |
-| ![Portfolio gallery](./docs/screenshots/04-works-gallery.png) | ![Booking wizard — live time slots](./docs/screenshots/07-booking-wizard.png) |
-| ![Mobile view](./docs/screenshots/08-mobile-home.png) | ![Admin sign-in](./docs/screenshots/10-admin-login.png) |
-
-More in [`docs/screenshots/`](./docs/screenshots/).
+![Ink Studio preview](./docs/screenshots/00-cover.png)
 
 ## Features
 
@@ -35,7 +29,7 @@ More in [`docs/screenshots/`](./docs/screenshots/).
 - Dark, motion-forward design system (Tailwind v4 + Motion), with full
   `prefers-reduced-motion` support
 
-## Tech stack
+## Tech Stack
 
 | | |
 |---|---|
@@ -49,7 +43,7 @@ More in [`docs/screenshots/`](./docs/screenshots/).
 | Testing | Vitest (unit), Playwright (E2E + accessibility) |
 | Deployment | Vercel |
 
-## Architecture notes
+## Architecture
 
 A few decisions worth calling out for anyone reading the code:
 
@@ -73,7 +67,19 @@ A few decisions worth calling out for anyone reading the code:
   only booked time slots to anonymous visitors — never names, phone
   numbers, or comments — with `search_path` explicitly pinned.
 
-## Getting started
+## Screenshots
+
+|  |  |
+|---|---|
+| ![Hero — desktop](./docs/screenshots/01-hero-en.png) | ![Hero — mobile](./docs/screenshots/08-mobile-home.png) |
+| ![About the studio](./docs/screenshots/03-about.png) | ![Artists](./docs/screenshots/03-artists.png) |
+| ![Portfolio](./docs/screenshots/04-works-gallery.png) | ![Services](./docs/screenshots/06-services.png) |
+| ![Booking — desktop](./docs/screenshots/07-booking-wizard.png) | ![Booking — mobile](./docs/screenshots/11-mobile-booking.png) |
+| ![Admin dashboard](./docs/screenshots/10-admin-login.png) | ![Footer](./docs/screenshots/12-footer.png) |
+
+More in [`docs/screenshots/`](./docs/screenshots/).
+
+## Installation
 
 ```bash
 pnpm install
@@ -83,17 +89,36 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-### Database setup
+## Environment Variables
+
+See [`.env.example`](./.env.example) for the full list. `SUPABASE_SERVICE_ROLE_KEY`
+is listed there but not currently used by the app — every query goes through
+the anon key and RLS.
+
+## Database
 
 Apply the migrations in `supabase/migrations/` (in order) via the Supabase
 SQL Editor, then optionally run `supabase/seed.sql` and
 `supabase/seed-reviews.sql` for sample data.
 
-### Environment variables
+## Deployment
 
-See [`.env.example`](./.env.example) for the full list. `SUPABASE_SERVICE_ROLE_KEY`
-is listed there but not currently used by the app — every query goes through
-the anon key and RLS.
+Deployed on [Vercel](https://vercel.com), connected to this GitHub repo —
+every push to `master` triggers an automatic production deployment. Security
+headers (CSP, HSTS, etc.), ISR caching, and static generation are configured
+in [`next.config.ts`](./next.config.ts) and the individual route files.
+
+## Future Improvements
+
+Honest list of what a real production version would still need:
+
+- Real image storage (Supabase Storage or similar) instead of generated
+  placeholder visuals for artist/work photos
+- Multiple admin roles/permissions instead of a single shared admin account
+- Payment/deposit collection at booking time
+- Rate limiting on the public booking endpoint, beyond the honeypot +
+  unique-slot constraint
+- A richer admin UI for editing bilingual content side-by-side
 
 ## Testing
 
