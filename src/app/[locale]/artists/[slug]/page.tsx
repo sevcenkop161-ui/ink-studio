@@ -8,6 +8,8 @@ import { getArtistBySlug, getArtists } from "@/lib/data/artists";
 import { getWorksByArtistSlug } from "@/lib/data/works";
 import { routing } from "@/i18n/routing";
 
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   const artists = await getArtists("en");
   return routing.locales.flatMap((locale) =>
@@ -27,8 +29,10 @@ export async function generateMetadata({
   if (!artist) return {};
 
   return {
-    title: `${artist.name} — Ink Studio`,
+    title: artist.name,
     description: artist.bio,
+    openGraph: { title: artist.name, description: artist.bio },
+    twitter: { title: artist.name, description: artist.bio },
   };
 }
 

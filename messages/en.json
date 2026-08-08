@@ -1,4 +1,18 @@
 {
+  "Metadata": {
+    "home": {
+      "title": "Ink Studio — Tattoo Studio in Berlin",
+      "description": "A Berlin tattoo studio for tattoos made with intention — bold blackwork, fine line, and everything in between. Book a session online."
+    },
+    "booking": {
+      "title": "Book a session",
+      "description": "Choose a service, artist, date and time to book your tattoo session at Ink Studio."
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "How Ink Studio, a demo/concept project, would handle booking data in a production deployment."
+    }
+  },
   "Hero": {
     "eyebrow": "Tattoo studio / Berlin",
     "title": "Your story, inked forever.",
@@ -18,6 +32,7 @@
     "statsDisclaimer": "Illustrative figures for this concept project — not a claim about a real business."
   },
   "Advantages": {
+    "heading": "Why Ink Studio",
     "individualDesign": {
       "title": "Individual Design",
       "description": "An individual approach to every piece."

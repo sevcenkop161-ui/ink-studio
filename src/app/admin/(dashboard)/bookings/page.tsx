@@ -45,7 +45,7 @@ export default async function AdminBookingsPage({
               }
               className={`rounded-full border px-4 py-2 text-sm transition-colors duration-200 ${
                 isActive
-                  ? "border-accent bg-accent text-white"
+                  ? "border-accent-solid bg-accent-solid text-white"
                   : "border-border text-text-secondary hover:border-border-hover hover:text-text"
               }`}
             >

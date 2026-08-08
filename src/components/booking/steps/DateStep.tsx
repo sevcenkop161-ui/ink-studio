@@ -38,7 +38,7 @@ export function DateStep({ selected, onSelect }: Props) {
               aria-pressed={isSelected}
               className={`flex w-16 flex-none flex-col items-center rounded-md border py-3 text-sm transition-colors duration-200 ${
                 isSelected
-                  ? "border-accent bg-accent text-white"
+                  ? "border-accent-solid bg-accent-solid text-white"
                   : "border-border text-text-secondary hover:border-border-hover hover:text-text"
               }`}
             >

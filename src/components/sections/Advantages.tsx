@@ -19,6 +19,7 @@ export function Advantages() {
   return (
     <section className="border-t border-border py-24 sm:py-32">
       <Container>
+        <h2 className="sr-only">{t("heading")}</h2>
         <motion.div
           variants={staggerContainer}
           initial="hidden"
