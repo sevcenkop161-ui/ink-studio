@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ink Studio
 
-## Getting Started
+A premium tattoo studio website — a demo/concept project built as a portfolio
+piece. Bilingual (EN/RU), fully functional booking flow with real-time
+availability, an authenticated admin dashboard, and a production deployment.
 
-First, run the development server:
+**Live demo:** https://ink-studio-swart.vercel.app
+
+> This is a fictional studio built to demonstrate full-stack development —
+> not a real business. See [`PROJECT_SPEC.md`](./PROJECT_SPEC.md) for the
+> original brief this was built against.
+
+## Features
+
+- **Bilingual site** (English/Russian) with locale-aware routing, SEO
+  metadata, and hreflang alternates
+- **6-step booking wizard** — service, artist, date, time (live availability
+  from the database), contact details, confirmation — with double-booking
+  prevention at the database level
+- **Admin dashboard** — authenticated CRUD for artists, services, and
+  bookings, protected by Supabase Auth + Row Level Security
+- **Telegram notifications** on new bookings
+- **Programmatically generated** favicon and Open Graph images (no external
+  design tools)
+- Dark, motion-forward design system (Tailwind v4 + Motion), with full
+  `prefers-reduced-motion` support
+
+## Tech stack
+
+| | |
+|---|---|
+| Framework | Next.js 16 (App Router, Turbopack) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 |
+| Animation | Motion (Framer Motion) |
+| i18n | next-intl |
+| Forms/validation | React Hook Form + Zod |
+| Backend | Supabase (Postgres, Auth, Row Level Security) |
+| Testing | Vitest (unit), Playwright (E2E + accessibility) |
+| Deployment | Vercel |
+
+## Architecture notes
+
+A few decisions worth calling out for anyone reading the code:
+
+- **Two independent root layouts.** The public bilingual site
+  (`src/app/[locale]/`) and the English-only admin panel (`src/app/admin/`)
+  each have their own root `layout.tsx` — there's no shared top-level
+  `app/layout.tsx`, which Next.js explicitly supports.
+- **Static generation + ISR, not SSR-on-every-request.** The public pages
+  are statically generated and revalidate hourly, with on-demand
+  `revalidatePath()` calls from admin mutations for instant updates —
+  see [`src/lib/admin/revalidate-public.ts`](./src/lib/admin/revalidate-public.ts).
+- **No Supabase client ships to the browser.** All database access happens
+  in Server Components and Server Actions; the one feature that used to run
+  client-side (checking booked time slots) was moved to a Server Action
+  specifically to avoid shipping the Supabase SDK to visitors.
+- **RLS does the real access control**, not just the admin route guard —
+  every admin Server Action uses the same cookie-scoped, RLS-enforced
+  client a logged-out request would get, so authorization isn't just a
+  redirect in `proxy.ts`.
+- **A `SECURITY DEFINER` Postgres function** (`get_booked_times`) exposes
+  only booked time slots to anonymous visitors — never names, phone
+  numbers, or comments — with `search_path` explicitly pinned.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+cp .env.example .env.local   # fill in your own Supabase/Telegram values
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Database setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Apply the migrations in `supabase/migrations/` (in order) via the Supabase
+SQL Editor, then optionally run `supabase/seed.sql` and
+`supabase/seed-reviews.sql` for sample data.
 
-## Learn More
+### Environment variables
 
-To learn more about Next.js, take a look at the following resources:
+See [`.env.example`](./.env.example) for the full list. `SUPABASE_SERVICE_ROLE_KEY`
+is listed there but not currently used by the app — every query goes through
+the anon key and RLS.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Testing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm test        # Vitest unit tests
+pnpm test:e2e     # Playwright E2E — booking flow, admin auth, a11y, etc.
+```
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Command | Description |
+|---|---|
+| `pnpm dev` | Start the dev server |
+| `pnpm build` | Production build |
+| `pnpm start` | Run a production build locally |
+| `pnpm lint` | ESLint |
+| `pnpm test` / `pnpm test:watch` | Unit tests |
+| `pnpm test:e2e` | End-to-end tests |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+MIT
