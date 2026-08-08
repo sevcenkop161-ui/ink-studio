@@ -44,4 +44,7 @@ Ink Studio — двуязычный (RU/EN) сайт тату-студии с п
 
 - Обложка кейса: `docs/screenshots/00-cover.png`
 - Полный набор скриншотов: `docs/screenshots/`
-- Видео-обзор (~25 сек): `docs/video/ink-studio-walkthrough.webm`
+- Видео-обзор (32 сек): `docs/video/ink-studio-walkthrough.mp4` — этот
+  файл грузи на Kwork/YouTube, он открывается везде (iPhone, Windows,
+  браузеры). Есть также `.webm` — вариант с чуть лучшим качеством для
+  веба, но его не открыть напрямую двойным кликом на большинстве систем.
