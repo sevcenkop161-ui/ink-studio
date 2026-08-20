@@ -25,11 +25,11 @@
     "heading": "A space built around your story.",
     "body": "Ink Studio is a space for people who see a tattoo not just as an image, but as part of their own story. Artists of different styles work under one roof, with the same attention to detail in every session — and in the conversation that happens before the needle ever touches skin.",
     "stats": {
-      "experience": { "value": "8+", "label": "Years of experience" },
-      "artists": { "value": "12+", "label": "Artists" },
-      "works": { "value": "3,000+", "label": "Works completed" }
+      "experience": { "value": "< 1 s", "label": "page load" },
+      "artists": { "value": "100%", "label": "mobile-friendly" },
+      "works": { "value": "4 steps", "label": "to book online" }
     },
-    "statsDisclaimer": "Illustrative figures for this concept project — not a claim about a real business."
+    "statsDisclaimer": "Demo data: services, artists and reviews are samples."
   },
   "Advantages": {
     "heading": "Why Ink Studio",
