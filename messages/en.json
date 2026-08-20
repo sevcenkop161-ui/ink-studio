@@ -1,8 +1,8 @@
 {
   "Metadata": {
     "home": {
-      "title": "Ink Studio — Tattoo Studio in Berlin",
-      "description": "A Berlin tattoo studio for tattoos made with intention — bold blackwork, fine line, and everything in between. Book a session online."
+      "title": "Ink Studio — Tattoo Studio",
+      "description": "A tattoo studio for tattoos made with intention — bold blackwork, fine line, and everything in between. Book a session online."
     },
     "booking": {
       "title": "Book a session",
@@ -14,9 +14,9 @@
     }
   },
   "Hero": {
-    "eyebrow": "Tattoo studio / Berlin",
+    "eyebrow": "Tattoo studio",
     "title": "Your story, inked forever.",
-    "subtitle": "A Berlin studio for tattoos made with intention — bold blackwork, fine detail, and everything in between.",
+    "subtitle": "A studio for tattoos made with intention — bold blackwork, fine detail, and everything in between.",
     "ctaPrimary": "Book now",
     "ctaSecondary": "View works"
   },
@@ -122,7 +122,7 @@
     "eyebrow": "Contacts",
     "heading": "Come say hi.",
     "addressLabel": "Address",
-    "address": "Torstraße 42, 10119 Berlin",
+    "address": "ул. Ленина, 42, Москва",
     "hoursLabel": "Hours",
     "hours": "Tue–Sun, 11:00–20:00",
     "socialsLabel": "Follow",
