@@ -35,7 +35,7 @@ export function ServiceStep({ services, selected, onSelect }: Props) {
               >
                 <h3 className="font-medium">{service.name}</h3>
                 <p className="mt-2 text-sm text-text-secondary">
-                  {service.priceFrom === 0
+                  {!service.priceFrom
                     ? t("free")
                     : `${t("priceFromLabel")} ${service.priceFrom.toLocaleString("ru-RU")} ₽`}
                 </p>

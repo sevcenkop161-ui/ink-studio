@@ -31,7 +31,7 @@ export default async function AdminServicesPage() {
                 <td className="px-4 py-3">{service.name_en}</td>
                 <td className="px-4 py-3 text-text-secondary">{service.slug}</td>
                 <td className="px-4 py-3">
-                  {service.price_from === 0 ? "Free" : `${service.price_from.toLocaleString("ru-RU")} ₽`}
+                  {!service.price_from ? "Free" : `${service.price_from.toLocaleString("ru-RU")} ₽`}
                 </td>
                 <td className="px-4 py-3">{service.duration_display_en}</td>
                 <td className="px-4 py-3 text-right">
