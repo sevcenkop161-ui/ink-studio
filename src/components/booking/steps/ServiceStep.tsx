@@ -37,7 +37,7 @@ export function ServiceStep({ services, selected, onSelect }: Props) {
                 <p className="mt-2 text-sm text-text-secondary">
                   {service.priceFrom === 0
                     ? t("free")
-                    : `${t("priceFromLabel")} €${service.priceFrom}`}
+                    : `${t("priceFromLabel")} ${service.priceFrom.toLocaleString("ru-RU")} ₽`}
                 </p>
               </Card>
             </button>

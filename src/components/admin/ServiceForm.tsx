@@ -80,7 +80,7 @@ export function ServiceForm({ action, defaultValues, submitLabel }: Props) {
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <Input
-          label="Price from (€, 0 = free)"
+          label="Price from (₽, 0 = free)"
           name="price_from"
           type="number"
           min={0}

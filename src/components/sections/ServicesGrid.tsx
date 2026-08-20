@@ -50,7 +50,7 @@ export function ServicesGrid({ services }: { services: ServiceWithLocale[] }) {
                     <p className="mt-1">
                       {service.priceFrom === 0
                         ? t("free")
-                        : `€${service.priceFrom}`}
+                        : `${service.priceFrom.toLocaleString("ru-RU")} ₽`}
                     </p>
                   </div>
                   <div className="text-right">
