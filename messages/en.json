@@ -183,9 +183,10 @@
     "close": "Close menu"
   },
   "Footer": {
-    "eyebrow": "Tattoo studio / Berlin",
+    "eyebrow": "Tattoo studio",
     "privacy": "Privacy Policy",
-    "rights": "Ink Studio. Demo/concept project."
+    "rights": "Ink Studio. Demo template with online booking.",
+    "authorLabel": "Website by Polina"
   },
   "PrivacyPage": {
     "title": "Privacy Policy",

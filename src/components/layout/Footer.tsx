@@ -60,6 +60,14 @@ export function Footer() {
           <p>
             © {year} {tFooter("rights")}
           </p>
+          <a
+            href="https://t.me/angelqqppp"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors duration-200 hover:text-text"
+          >
+            {tFooter("authorLabel")}
+          </a>
           <Link
             href="/privacy"
             className="transition-colors duration-200 hover:text-text"
